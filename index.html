@@ -1,336 +1,591 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summer // Academic & Research Portfolio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Plus Jakarta Sans -->
+    <title>Summer | Personal Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        darkBg: '#0B0F19',
-                        cardBg: '#131825',
-                        borderColor: '#22293F',
-                        accentPurple: '#A855F7',
-                        accentViolet: '#7C3AED',
-                        accentPink: '#EC4899',
-                    },
-                    boxShadow: {
-                        purpleGlow: '0 0 20px -5px rgba(168, 85, 247, 0.4)',
-                    }
-                }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & THEMING --- */
+        :root {
+            --bg-deep: #0f0c1b;
+            --bg-surface: #19142d;
+            --bg-surface-hover: #231b3e;
+            --primary: #8a63ffd3;
+            --primary-bright: #a384ff;
+            --accent-lavender: #e2daff;
+            --text-main: #f3f0ff;
+            --text-muted: #a59fb9;
+            --white: #ffffff;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- GLOBAL RESETS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+        }
+
+        body {
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        section {
+            padding: 100px 2rem 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--white) 30%, var(--primary-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 12, 27, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(138, 99, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--white);
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--white), var(--accent-lavender));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-bright);
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            padding-top: 120px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--primary-bright), #c3b3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+            font-weight: 400;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+            box-shadow: 0 4px 20px rgba(138, 99, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-bright);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(138, 99, 255, 0.4);
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--bg-surface);
+            box-shadow: 0 0 0 4px var(--primary), 0 20px 40px rgba(0,0,0,0.4);
+            transition: var(--transition-smooth);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.03) rotate(2deg);
+        }
+
+        /* --- ABOUT ME SECTION --- */
+        .about-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            background: var(--bg-surface);
+            padding: 3.5rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .about-text {
+            flex: 1.3;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image-container {
+            flex: 0.7;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-img {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(138, 99, 255, 0.2);
+            transition: var(--transition-smooth);
+        }
+
+        .about-img:hover {
+            transform: translateY(-5px);
+        }
+
+        /* --- ACADEMIC & OLYMPIAD AWARDS --- */
+        .grid-awards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .award-card {
+            background: var(--bg-surface);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: var(--transition-smooth);
+        }
+
+        .award-card:hover {
+            transform: translateY(-8px);
+            background: var(--bg-surface-hover);
+            border-color: rgba(138, 99, 255, 0.3);
+            box-shadow: 0 12px 30px rgba(138, 99, 255, 0.1);
+        }
+
+        .award-badge {
+            width: 70px;
+            height: 70px;
+            background: rgba(138, 99, 255, 0.1);
+            color: var(--primary-bright);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .award-card.gold .award-badge {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+        }
+
+        .award-card.silver .award-badge {
+            background: rgba(192, 192, 192, 0.1);
+            color: #c0c0c0;
+        }
+
+        .award-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .award-sub {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- RESEARCH PROJECTS --- */
+        .grid-projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--bg-surface);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-surface-hover);
+            border-color: rgba(138, 99, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-tag {
+            align-self: flex-start;
+            background: rgba(138, 99, 255, 0.15);
+            color: var(--primary-bright);
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* --- LEADERSHIP & EXTRACURRICULARS --- */
+        .grid-activities {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .activity-card {
+            display: flex;
+            gap: 2rem;
+            background: var(--bg-surface);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: var(--transition-smooth);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-surface-hover);
+            border-color: rgba(138, 99, 255, 0.2);
+        }
+
+        .activity-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .activity-info h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-info p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* --- FOOTER / CONTACT --- */
+        footer {
+            background: #090712;
+            padding: 5px 2rem 40px 2rem;
+            border-top: 1px solid rgba(138, 99, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-bright);
+        }
+
+        .copyright {
+            color: #5a546e;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 968px) {
+            #hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                justify-content: center;
+                padding-top: 140px;
+                gap: 2.5rem;
+            }
+
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .about-wrapper {
+                flex-direction: column;
+                padding: 2.5rem;
+                gap: 2.5rem;
+            }
+
+            .grid-awards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid-projects, .grid-activities {
+                grid-template-columns: 1fr;
             }
         }
-    </script>
-    <style>
-        /* Custom smooth transition adjustments and purple ring glows */
-        .bento-card {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .bento-card:hover {
-            transform: translateY(-4px);
-            border-color: #A855F7;
-            box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.3);
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none; /* Can be updated with a mobile menu drawer if needed */
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .grid-awards {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
-<body class="bg-darkBg text-slate-100 font-sans antialiased selection:bg-purple-500/30 selection:text-purple-300">
+<body>
 
-    <!-- GLOBAL BACKGROUND RADIAL GRADIENTS -->
-    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-purple-900/10 blur-[120px]"></div>
-        <div class="absolute bottom-[20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-violet-900/10 blur-[150px]"></div>
-        <div class="absolute top-[40%] left-[30%] w-[40vw] h-[40vw] rounded-full bg-pink-900/5 blur-[100px]"></div>
-    </div>
-
-    <!-- STICKY NAVIGATION BAR -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-darkBg/60 backdrop-blur-xl border-b border-borderColor/60">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="text-sm font-bold tracking-wider bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity">SUMMER.</a>
-            <nav class="hidden sm:flex gap-8 text-xs font-medium tracking-wide uppercase text-slate-400">
-                <a href="#about" class="hover:text-purple-400 transition-colors duration-300">About</a>
-                <a href="#leaderboard" class="hover:text-purple-400 transition-colors duration-300">Achievements</a>
-                <a href="#research" class="hover:text-purple-400 transition-colors duration-300">Research</a>
-                <a href="#extracurriculars" class="hover:text-purple-400 transition-colors duration-300">Activities</a>
-            </nav>
+    <header>
+        <div class="nav-container">
+            <a href="#hero" class="logo">Summer</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#awards">Achievements</a></li>
+                <li><a href="#projects">Research</a></li>
+                <li><a href="#activities">Leadership</a></li>
+            </ul>
         </div>
     </header>
 
-    <div class="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 space-y-28">
+    <section id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Hi, I'm <span>Summer</span>.<br>Aspiring Chemist & Researcher</h1>
+            <p class="hero-subtitle">Grade 11 Student passionate about molecular science, academic leadership, and structural innovation.</p>
+            <a href="#projects" class="btn-primary">View My Work</a>
+        </div>
+        <div class="hero-image-container">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=500" alt="Summer Profile Picture" class="profile-img">
+        </div>
+    </section>
 
-        <!-- 1. HERO / ABOUT SECTION -->
-        <section id="about" class="min-h-[60vh] flex flex-col justify-center">
-            <div class="max-w-3xl space-y-6">
-                <!-- Academic Foundation Tag Line -->
-                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-purple-950/40 border border-purple-800/40 text-xs font-semibold text-purple-300 shadow-purpleGlow">
-                    <span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
-                    Studying A-Levels // 5 A* Track Profile
-                </div>
-                
-                <!-- Main Header Title -->
-                <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white leading-none">
-                    Hey, I'm <span class="bg-gradient-to-r from-purple-400 via-violet-200 to-pink-400 bg-clip-text text-transparent">Summer</span>.
-                </h1>
-                
-                <h2 class="text-lg md:text-xl font-medium text-slate-400 tracking-wide">
-                    Grade 11 Student &bull; Aspiring Chemist & Bio-Materials Researcher
-                </h2>
-                
-                <!-- Personalized Creative Biography -->
-                <p class="text-base md:text-lg text-slate-300/90 leading-relaxed font-light space-y-4">
-                    Yes, I'm a student named Summer who actually completely loves the summer season! When I'm not swimming laps or enjoying my favorite ice cream, you can almost always find me diving headfirst into advanced scientific inquiries. 
-                </p>
-                <p class="text-base md:text-lg text-slate-300/90 leading-relaxed font-light">
-                    I have an intense love for chemistry and a massive passion for hands-on, micro-level laboratory experiments. I find genuine joy in unlocking hidden properties of materials to solve global issues. (And yes, I absolutely love cats!)
-                </p>
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-wrapper">
+            <div class="about-text">
+                <p>Driven by a deep curiosity about how the world functions at a molecular level, I dedicate my academic pursuits to advanced chemistry and scientific research. I thrive on solving complex problems, whether in a laboratory environment or structured academic competitions.</p>
+                <p>Beyond the classroom, I am an active leader and high-energy individual. Much like the vibrant warmth of the summer season, I bring energy and determination to everything I do—from building robust communities to pushing personal athletic limits. I find creative inspiration in the agile, independent, and curious nature of cats, qualities that mirror my own approach to navigating intricate research challenges.</p>
+            </div>
+            <div class="about-image-container">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=600" alt="Inspiration Cat Photo" class="about-img">
+            </div>
+        </div>
+    </section>
 
-                <!-- Scroll indicator action -->
-                <div class="pt-4">
-                    <a href="#leaderboard" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-purple-400 hover:text-purple-300 group transition-colors">
-                        Explore Academic Portfolio
-                        <i data-lucide="arrow-down" class="w-4 h-4 transform group-hover:translate-y-1 transition-transform duration-300"></i>
-                    </a>
+    <section id="awards">
+        <h2 class="section-title">Olympiad Achievements</h2>
+        <div class="grid-awards">
+            <div class="award-card gold">
+                <div class="award-badge">Au</div>
+                <h3 class="award-title">UKChO Gold</h3>
+                <p class="award-sub">UK Chemistry Olympiad</p>
+            </div>
+            <div class="award-card gold">
+                <div class="award-badge">SMC</div>
+                <h3 class="award-title">SMC Gold</h3>
+                <p class="award-sub">Senior Mathematical Challenge</p>
+            </div>
+            <div class="award-card silver">
+                <div class="award-badge">Ag</div>
+                <h3 class="award-title">CCC Silver</h3>
+                <p class="award-sub">Canadian Chemistry Contest</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Research & Projects</h2>
+        <div class="grid-projects">
+            <div class="project-card">
+                <div>
+                    <span class="project-tag">Materials Chemistry</span>
+                    <h3 class="project-title">Nanotube Chemistry Battery Innovation</h3>
+                    <p class="project-desc">An exploratory research initiative focused on synthesizing microscopic carbon/molecular nanotubes. The project investigates their optimized application structural frameworks to build high-efficiency, next-generation chemistry batteries with enhanced energy density retention.</p>
                 </div>
             </div>
-        </section>
-
-
-        <!-- 2. ACADEMIC & COMPETITION LEADERBOARD (BENTO GRID) -->
-        <section id="leaderboard" class="space-y-6">
-            <div class="flex flex-col gap-1">
-                <p class="text-xs font-bold tracking-widest text-purple-500 uppercase">Metrics & Distinctions</p>
-                <h2 class="text-2xl font-bold text-white tracking-tight">Academic Leaderboard</h2>
-            </div>
-
-            <!-- Bento Layout Structure -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                
-                <!-- Card A: 5 A* Academic Profile -->
-                <div class="bento-card bg-cardBg border border-borderColor p-6 rounded-2xl md:col-span-1 flex flex-col justify-between group">
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
-                            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-white">Academic Standing</h3>
-                            <p class="text-xs text-slate-400 mt-1">Rigorous curriculum matching top global thresholds.</p>
-                        </div>
-                    </div>
-                    <div class="mt-8">
-                        <span class="text-5xl font-extrabold tracking-tight bg-gradient-to-br from-white to-slate-500 bg-clip-text text-transparent">5 A*</span>
-                        <p class="text-[11px] font-mono uppercase tracking-wider text-purple-400 mt-2">Predicted A-Level Metrics</p>
-                    </div>
-                </div>
-
-                <!-- Card B: UK Chemistry Olympiad Gold -->
-                <div class="bento-card bg-cardBg border border-borderColor p-6 rounded-2xl md:col-span-2 flex flex-col justify-between group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-purple-500/5 to-transparent pointer-events-none"></div>
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400">
-                            <i data-lucide="beaker" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-white">UK Chemistry Olympiad (UKChO)</h3>
-                            <p class="text-sm text-slate-400 mt-2 max-w-md">
-                                Mastered advanced chemical synthesis equations, equilibrium systems, and deep analytical mechanics tasks well beyond the high school scope.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mt-8 flex items-center justify-between border-t border-slate-800/60 pt-4">
-                        <span class="text-xs font-mono tracking-wider text-slate-500 uppercase">Royal Society of Chemistry</span>
-                        <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-bold tracking-wide border border-purple-500/30">Gold Award</span>
-                    </div>
-                </div>
-
-                <!-- Card C: Senior Mathematical Challenge Gold -->
-                <div class="bento-card bg-cardBg border border-borderColor p-6 rounded-2xl md:col-span-2 flex flex-col justify-between group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-violet-500/5 to-transparent pointer-events-none"></div>
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
-                            <i data-lucide="calculator" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-white">Senior Mathematical Challenge (SMC)</h3>
-                            <p class="text-sm text-slate-400 mt-2 max-w-md">
-                                Demonstrated rapid problem solving, advanced spatial logic, and complex analytical fluid reasoning matrices.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mt-8 flex items-center justify-between border-t border-slate-800/60 pt-4">
-                        <span class="text-xs font-mono tracking-wider text-slate-500 uppercase">UKMT Framework</span>
-                        <span class="px-3 py-1 rounded-full bg-violet-500/10 text-violet-300 text-xs font-bold tracking-wide border border-violet-500/30">Gold Award</span>
-                    </div>
-                </div>
-
-                <!-- Card D: Canadian Computing Competition Silver -->
-                <div class="bento-card bg-cardBg border border-borderColor p-6 rounded-2xl md:col-span-1 flex flex-col justify-between group">
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300">
-                            <i data-lucide="cpu" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-white">Canadian Computing Competition</h3>
-                            <p class="text-sm text-slate-400 mt-1">Algorithmic logic and data structure execution speeds.</p>
-                        </div>
-                    </div>
-                    <div class="mt-8 flex items-center justify-between">
-                        <span class="text-xs font-mono uppercase tracking-wider text-slate-500">CCC Waterloo</span>
-                        <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-bold tracking-wide border border-slate-700">Silver Award</span>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- 3. RESEARCH & LABORATORY SHOWCASE -->
-        <section id="research" class="space-y-6">
-            <div class="flex flex-col gap-1">
-                <p class="text-xs font-bold tracking-widest text-purple-500 uppercase">Laboratory Investigations</p>
-                <h2 class="text-2xl font-bold text-white tracking-tight">Research Portfolio</h2>
-            </div>
-
-            <div class="space-y-6">
-                <!-- PROJECT 1: CARBON NANOTUBES -->
-                <div class="p-6 md:p-8 rounded-2xl bg-cardBg border border-borderColor space-y-6 relative overflow-hidden group hover:border-purple-500/40 transition-colors duration-300">
-                    <div class="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-purple-500/5 to-transparent rounded-bl-full pointer-events-none"></div>
-                    
-                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 border-b border-slate-800/60 pb-5">
-                        <div class="space-y-1">
-                            <span class="text-[10px] font-mono uppercase tracking-wider text-purple-400 font-bold">Project Focus 01 // Materials Science</span>
-                            <h3 class="text-xl font-semibold text-white tracking-tight">
-                                Carbon Nanotube Applications in Next-Generation Battery Technology
-                            </h3>
-                        </div>
-                        <div class="flex items-center gap-1.5 bg-slate-900 px-3 py-1 rounded-full border border-slate-800 text-xs text-slate-400 font-mono self-start">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
-                            Electrochemistry
-                        </div>
-                    </div>
-                    <p class="text-sm text-slate-400 leading-relaxed max-w-4xl">
-                        Independent experiment investigating structural frameworks, conductivity dynamics, and practical energy-storage metrics of carbon nanotubes. The objective centers on engineering sustainable, rapid-charging micro-battery configurations capable of replacing unstable classical graphite structures.
-                    </p>
-                    
-                    <!-- Research Grid Details -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                        <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/60 space-y-1">
-                            <span class="font-mono text-purple-400 uppercase tracking-widest font-bold block text-[10px]">Hypothesis</span>
-                            <p class="text-slate-400 leading-relaxed">Structural incorporation of functionalized carbon nanotubes minimizes internal core thermal degradation while optimizing electron flux vectors across consecutive load cycles.</p>
-                        </div>
-                        <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/60 space-y-1">
-                            <span class="font-mono text-purple-400 uppercase tracking-widest font-bold block text-[10px]">Methodology</span>
-                            <p class="text-slate-400 leading-relaxed">Formulated multi-walled nanotube slurry amalgams, coating test anodes for evaluation under regulated charge intervals via comparative impedance spectroscopy metrics.</p>
-                        </div>
-                        <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/60 space-y-1">
-                            <span class="font-mono text-purple-400 uppercase tracking-widest font-bold block text-[10px]">Key Outcome</span>
-                            <p class="text-slate-400 leading-relaxed">Data logs recorded verified optimizations in overall current retention parameters, presenting a viable model baseline for scaling advanced green battery options.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 2: ONCOLOGY RESEARCH -->
-                <div class="p-6 md:p-8 rounded-2xl bg-cardBg border border-borderColor space-y-6 relative overflow-hidden group hover:border-pink-500/40 transition-colors duration-300">
-                    <div class="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-pink-500/5 to-transparent rounded-bl-full pointer-events-none"></div>
-                    
-                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 border-b border-slate-800/60 pb-5">
-                        <div class="space-y-1">
-                            <span class="text-[10px] font-mono uppercase tracking-wider text-pink-400 font-bold">Project Focus 02 // Biochemistry & Oncology</span>
-                            <h3 class="text-xl font-semibold text-white tracking-tight">
-                                Targeted Nanomedicine & Active Immune Response Oncology Systems
-                            </h3>
-                        </div>
-                        <div class="flex items-center gap-1.5 bg-slate-900 px-3 py-1 rounded-full border border-slate-800 text-xs text-slate-400 font-mono self-start">
-                            <span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span>
-                            Immunotherapy
-                        </div>
-                    </div>
-                    <p class="text-sm text-slate-400 leading-relaxed max-w-4xl">
-                        A theoretical research roadmap evaluating specific biochemistry platforms designed to intercept target tumor matrices. The mechanism focuses on stimulating cellular micro-environments to systematically wake up and activate natural immune responses, driving full recovery pathways.
-                    </p>
-                    
-                    <!-- Sub-grid Elements -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                        <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/60 space-y-1">
-                            <span class="font-mono text-pink-400 uppercase tracking-widest font-bold block text-[10px]">Objective</span>
-                            <p class="text-slate-400 leading-relaxed">Synthesize safe bio-compatible vehicle models to selectively isolate cancer mutations without introducing toxicity variables to neighboring cellular fields.</p>
-                        </div>
-                        <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/60 space-y-1">
-                            <span class="font-mono text-pink-400 uppercase tracking-widest font-bold block text-[10px]">Mechanism</span>
-                            <p class="text-slate-400 leading-relaxed">Triggering surface receptor protein binding changes to unmask tumor locations, encouraging immediate targeted auto-immune activation strings to accelerate systemic tissue restoration.</p>
-                        </div>
-                    </div>
+            <div class="project-card">
+                <div>
+                    <span class="project-tag">Biomedical Science</span>
+                    <h3 class="project-title">Tumor & Cancer Cell Recovery via IFN-I</h3>
+                    <p class="project-desc">An advanced theoretical and analytical study researching the mechanics of cellular recovery. The project investigates the therapeutic application of Type I Interferon (IFN-I) signaling pathways to slow tumor proliferation and support healthy cell recovery processes.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-
-        <!-- 4. LEADERSHIP & ATHLETICS -->
-        <section id="extracurriculars" class="space-y-6">
-            <div class="flex flex-col gap-1">
-                <p class="text-xs font-bold tracking-widest text-purple-500 uppercase">Leadership & Drive</p>
-                <h2 class="text-2xl font-bold text-white tracking-tight">Extracurricular Pillars</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Chess Club Card -->
-                <div class="p-6 rounded-2xl bg-cardBg border border-borderColor flex items-start gap-4 group hover:border-purple-500/30 transition-all duration-300">
-                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0 border border-purple-500/20">
-                        <i data-lucide="crown" class="w-5 h-5"></i>
-                    </div>
-                    <div class="space-y-1">
-                        <div class="flex items-center gap-2">
-                            <h3 class="text-base font-semibold text-white">Chess Club</h3>
-                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-800/40">Founder</span>
-                        </div>
-                        <p class="text-sm text-slate-400 leading-relaxed">
-                            Built up the entire organization from scratch. Spearheaded structural training sessions, managed internal tournaments, and fostered logic-driven analytical communities across diverse high school academic tiers.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Athletics Card -->
-                <div class="p-6 rounded-2xl bg-cardBg border border-borderColor flex items-start gap-4 group hover:border-pink-500/30 transition-all duration-300">
-                    <div class="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 shrink-0 border border-pink-500/20">
-                        <i data-lucide="trophy" class="w-5 h-5"></i>
-                    </div>
-                    <div class="space-y-1">
-                        <div class="flex items-center gap-2">
-                            <h3 class="text-base font-semibold text-white">Competitive Running & Track</h3>
-                            <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-pink-950 text-pink-300 border border-pink-800/40">1st Place Champion</span>
-                        </div>
-                        <p class="text-sm text-slate-400 leading-relaxed">
-                            Earned top podium position through rigorous physical stamina training profiles. Directly translates strict athletic consistency, pacing, absolute endurance limits, and competitive drive into my academic chemistry research workflows.
-                        </p>
-                    </div>
+    <section id="activities">
+        <h2 class="section-title">Leadership & Extracurriculars</h2>
+        <div class="grid-activities">
+            <div class="activity-card">
+                <div class="activity-icon">♟️</div>
+                <div class="activity-info">
+                    <h3>Chess Club Founder & Builder</h3>
+                    <p>Initiated, structured, and scaled local chess communities. Focused on strategic development, hosting competitive matches, and teaching tactical frameworks to new members to foster community growth.</p>
                 </div>
             </div>
-        </section>
+            <div class="activity-card">
+                <div class="activity-icon">🏃‍♀️</div>
+                <div class="activity-info">
+                    <h3>Competitive Running Champion</h3>
+                    <p>Dedicated student-athlete combining endurance training with extreme discipline. Earned a decisive 1st place finish in a major regional running competition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </div>
-
-    <!-- FOOTER DESIGN -->
-    <footer class="border-t border-borderColor/60 bg-darkBg/40 backdrop-blur-md relative z-10">
-        <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between text-[11px] text-slate-500 font-mono tracking-wide gap-4">
-            <p>&copy; 2026 Summer. Formatted strictly for University Admissions Evaluation Panels.</p>
-            <p>Built with semantic HTML5 components & Tailwind UI systems.</p>
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="mailto:your.email@example.com">Email Me</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </div>
+            <p class="copyright">&copy; 2026 Summer. Designed for University Admissions Portfolios.</p>
         </div>
     </footer>
 
-    <!-- Initialize Lucide Icons via script execution block -->
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 </html>
